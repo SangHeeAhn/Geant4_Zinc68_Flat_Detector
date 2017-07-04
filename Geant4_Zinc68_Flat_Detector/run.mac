@@ -1,0 +1,33 @@
+# Macro file: run.mac
+
+/run/verbose 0
+/tracking/verbose 0
+
+# gps example 
+/gps/particle proton
+/gps/pos/type Plane
+#/gps/pos/type Point
+/gps/pos/shape Circle
+/gps/pos/centre 0 0 -15 cm
+/gps/direction 0 0 1
+/gps/pos/radius 0.15 cm
+#/gps/pos/halfx 5.0 cm
+#/gps/pos/halfy 5.0 cm
+
+/gps/energy 10.0 MeV 
+#/gps/energy 110.0 MeV 
+
+
+#/run/beamOn 42500000
+
+#/run/beamOn 250000
+
+#/run/beamOn 170000
+
+
+/run/beamOn 9857638  # 2cG bragg peak only proton number
+
+
+#/process/em/pixe true
+/run/setCut 1.0 mm
+

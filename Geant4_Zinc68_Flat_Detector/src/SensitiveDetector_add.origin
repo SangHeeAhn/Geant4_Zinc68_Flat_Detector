@@ -1,0 +1,104 @@
+/*
+ * SensitiveDetector_add.cc
+ *
+ *  Created on: Jan 24, 2017
+ *      Author: ash
+ */
+#include "SensitiveDetector_add.hh"
+#include "DetectorConstruction.hh"
+#include <MpiManagerWJ.hh>
+#include <string.h>
+#include <iostream>
+#include <iomanip>
+#include <sstream>
+#include <time.h>
+#include <stdio.h>
+
+#include "G4Track.hh"
+
+using namespace std;
+
+
+
+SensitiveDetector_add::SensitiveDetector_add(G4String name)
+:G4VSensitiveDetector(name)
+{
+
+	// MPI rank
+	MpiManagerWJ *MpiManager = new MpiManagerWJ();
+	MpiManager->SetRankNumber();
+	this->rank = MpiManager->GetRankNumber();
+
+	// ofs.open("output.txt");
+
+
+	// Time
+	time_t now;
+	struct tm t;
+
+
+	time(&now);
+	t = *localtime(&now);
+	G4int year = t.tm_year + 1900;
+	G4int month = t.tm_mon +1;
+	G4int day = t.tm_mday;
+	G4int hour = t.tm_hour;
+	G4int min = t.tm_min;
+	G4int sec = t.tm_sec;
+
+	// File name
+	stringstream ss_filename;
+	ss_filename<<"Dose_"<<year << month << hour << day << "_" << hour << ":" << min <<":" <<sec <<"_RankNum:" << rank;
+	filenameForSave = ss_filename.str();
+
+
+	ofs.open(filenameForSave.c_str()); // Hist
+
+
+	Mass = 0;
+	dE = 0;
+	Dose = 0;
+}
+
+
+SensitiveDetector_add::~SensitiveDetector_add()
+{
+
+	this->ofs.close();
+
+}
+void SensitiveDetector_add::Initialize(G4HCofThisEvent*)
+{
+
+
+}
+
+
+G4bool SensitiveDetector_add::ProcessHits(G4Step* aStep, G4TouchableHistory*)
+{
+	dE += aStep->GetTotalEnergyDeposit();
+
+	//G4cout << dE/MeV << G4endl;
+
+	return true;
+}
+void SensitiveDetector_add::EndOfEvent(G4HCofThisEvent*)
+{
+	const DetectorConstruction* detectorConstruction  = static_cast<const DetectorConstruction*>
+
+	(G4RunManager::GetRunManager()->GetUserDetectorConstruction());
+
+	Mass = detectorConstruction->GetScoringVolume()->GetMass();
+
+	//G4cout << Mass/kg <<" kg"<<G4endl;
+
+	G4double J = 1.602176487*pow(10,-16);
+
+	Dose  = ((dE/keV)*J)/(Mass/kg);
+
+	//G4cout << Dose << "Gy" << G4endl;
+
+	//ofs << Dose << G4endl;
+
+
+}

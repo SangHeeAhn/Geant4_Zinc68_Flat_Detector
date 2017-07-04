@@ -1,0 +1,75 @@
+#/control/verbose 2
+#/tracking/verbose 2
+#/event/verbose 0
+#/gps/verbose 2
+/gps/particle gamma
+/gps/pos/type Plane
+/gps/pos/shape Ellipse
+/gps/pos/centre 0 0 1.0 cm
+/gps/pos/halfx 0.5 cm
+/gps/pos/halfy 0.5 cm
+
+
+
+## energy spectrum set up #
+/gps/ene/type User
+#/gps/ene/gradient 1
+#/gps/ene/intercept 1
+#/gps/ene/diffspec false
+/gps/ene/min 0. keV
+/gps/ene/max 50. keV
+#/gps/ene/emspec 0
+
+/gps/hist/type energy
+/gps/hist/point  1.000000e-03  0
+/gps/hist/point  2.000000e-03  0
+/gps/hist/point  3.000000e-03  0
+/gps/hist/point  4.000000e-03  0
+/gps/hist/point  5.000000e-03  2.050000e-26
+/gps/hist/point  6.000000e-03  4.510000e-13
+/gps/hist/point  7.000000e-03  4.780000e-06
+/gps/hist/point  8.000000e-03  5.284610e-02
+/gps/hist/point  9.000000e-03  9.330000e-10
+/gps/hist/point  1.000000e-02  5.830000e-06
+/gps/hist/point  1.100000e-02  2.553800e-03
+/gps/hist/point  1.200000e-02  2.329377e-01
+/gps/hist/point  1.300000e-02  7.782595e+00
+/gps/hist/point  1.400000e-02  1.030866e+02
+/gps/hist/point  1.500000e-02  7.454145e+02
+/gps/hist/point  1.600000e-02  3.448153e+03
+/gps/hist/point  1.700000e-02  1.121190e+04
+/gps/hist/point  1.800000e-02  2.844363e+04
+/gps/hist/point  1.900000e-02  5.980818e+04
+/gps/hist/point  2.000000e-02  1.084928e+05
+/gps/hist/point  2.100000e-02  1.747232e+05
+/gps/hist/point  2.200000e-02  2.589609e+05
+/gps/hist/point  2.300000e-02  355221
+/gps/hist/point  2.400000e-02  4.614038e+05
+/gps/hist/point  2.500000e-02  5.677566e+05
+/gps/hist/point  2.600000e-02  673888
+/gps/hist/point  2.700000e-02  7.697468e+05
+/gps/hist/point  2.800000e-02  8.653935e+05
+/gps/hist/point  2.900000e-02  9.377328e+05
+/gps/hist/point  3.000000e-02  1000000
+/gps/hist/point  3.100000e-02  1050000
+/gps/hist/point  3.200000e-02  1080000
+/gps/hist/point  3.300000e-02  1100000
+/gps/hist/point  3.400000e-02  1110000
+/gps/hist/point  3.500000e-02  1110000
+/gps/hist/point  3.600000e-02  1090000
+/gps/hist/point  3.700000e-02  1070000
+/gps/hist/point  3.800000e-02  1030000
+/gps/hist/point  3.900000e-02  9.891583e+05
+/gps/hist/point  4.000000e-02  9.401683e+05
+/gps/hist/point  4.100000e-02  8.837799e+05
+/gps/hist/point  4.200000e-02  8.220534e+05
+/gps/hist/point  4.300000e-02  7.545756e+05
+/gps/hist/point  4.400000e-02  6.819195e+05
+/gps/hist/point  4.500000e-02  6.031458e+05
+/gps/hist/point  4.600000e-02  519292
+/gps/hist/point  4.700000e-02  4.290774e+05
+/gps/hist/point  4.800000e-02  3.254251e+05
+/gps/hist/point  4.900000e-02  220383
+/gps/hist/point  5.000000e-02  0
+
+/run/beamOn 100000000
